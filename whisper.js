@@ -71,8 +71,6 @@ export async function transcribeBlob(blob, onProgress = () => {}) {
   const audio = await blobTo16kMono(blob);
   const transcriber = await loadWhisper(onProgress);
   const output = await transcriber(audio, {
-    language: 'en',
-    task: 'transcribe',
     return_timestamps: false
   });
   return { text: (output?.text || '').trim(), audio, sampleRate: 16000 };

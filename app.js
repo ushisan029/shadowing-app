@@ -279,7 +279,6 @@ async function gradeMobileRecording(blob, spoken, recognitionError = '') {
     const audioAnalysis = analyzeAudio(audio, 16000);
     const score = scoreShadowing(phrase().english, spoken, audioAnalysis);
     saveScore({ phraseId: phrase().id, target: phrase().english, spoken, mode: 'mobile-speech', ...score });
-    markPracticed(phrase().id);
     els.recordStatus.textContent = '採点できました。スマホでは安定性を優先し、ブラウザの軽量音声認識を利用しています。';
     renderScore(score, spoken, 'mobile');
     renderHome();
@@ -302,7 +301,6 @@ async function gradeWhisperRecording(blob) {
     const audioAnalysis = analyzeAudio(result.audio, result.sampleRate);
     const score = scoreShadowing(phrase().english, result.text, audioAnalysis);
     saveScore({ phraseId: phrase().id, target: phrase().english, spoken: result.text, mode: 'whisper', ...score });
-    markPracticed(phrase().id);
     renderScore(score, result.text, 'whisper');
     renderHome();
   } catch (error) {
@@ -365,15 +363,21 @@ function nextStep() {
   resetRecording();
   if (currentStep < 5) {
     currentStep++;
-  } else if (currentPhrase < lesson().phrases.length - 1) {
-    currentPhrase++;
-    currentStep = 0;
   } else {
+    // A phrase is complete when the learner finishes Step 6.
+    // Count it exactly once here, regardless of whether AI grading was used or succeeded.
     markPracticed(phrase().id);
-    clearPracticeState();
-    showView('homeView');
     renderHome();
-    return;
+
+    if (currentPhrase < lesson().phrases.length - 1) {
+      currentPhrase++;
+      currentStep = 0;
+    } else {
+      clearPracticeState();
+      showView('homeView');
+      renderHome();
+      return;
+    }
   }
   renderPractice();
 }

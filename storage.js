@@ -17,13 +17,21 @@ function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
+function localDateKey() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 export function getProgress() {
   return load(KEYS.progress, { practiced: {}, today: {} });
 }
 
 export function markPracticed(phraseId) {
   const state = getProgress();
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDateKey();
   state.practiced[phraseId] = (state.practiced[phraseId] || 0) + 1;
   state.today[today] = state.today[today] || {};
   state.today[today][phraseId] = (state.today[today][phraseId] || 0) + 1;
@@ -33,7 +41,7 @@ export function markPracticed(phraseId) {
 
 export function getTodayCount() {
   const state = getProgress();
-  const today = new Date().toISOString().slice(0, 10);
+  const today = localDateKey();
   return Object.values(state.today[today] || {}).reduce((sum, n) => sum + n, 0);
 }
 
