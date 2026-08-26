@@ -1,4 +1,4 @@
-const CACHE = 'daily-shadowing-shell-v3';
+const CACHE = 'daily-shadowing-shell-v4';
 const ASSETS = [
   './',
   './index.html',
