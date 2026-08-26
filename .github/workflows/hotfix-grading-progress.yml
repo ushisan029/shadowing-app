@@ -1,0 +1,71 @@
+name: Hotfix grading and progress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hotfix-grading-progress.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  hotfix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Patch grading and progress
+        shell: python
+        run: |
+          from pathlib import Path
+
+          # 1) Whisper tiny.en is English-only: do not pass language/task.
+          p = Path('whisper.js')
+          s = p.read_text()
+          old = """  const output = await transcriber(audio, {\n    language: 'en',\n    task: 'transcribe',\n    return_timestamps: false\n  });"""
+          new = """  const output = await transcriber(audio, {\n    return_timestamps: false\n  });"""
+          if old not in s:
+              raise SystemExit('Expected Whisper options block not found')
+          p.write_text(s.replace(old, new))
+
+          # 2) Count a phrase when Step 6 is completed, not when grading succeeds.
+          p = Path('app.js')
+          s = p.read_text()
+          # Remove grading-driven progress increments (two occurrences).
+          s = s.replace("    markPracticed(phrase().id);\n", "", 2)
+          old = """function nextStep() {\n  resetRecording();\n  if (currentStep < 5) {\n    currentStep++;\n  } else if (currentPhrase < lesson().phrases.length - 1) {\n    currentPhrase++;\n    currentStep = 0;\n  } else {\n    markPracticed(phrase().id);\n    clearPracticeState();\n    showView('homeView');\n    renderHome();\n    return;\n  }\n  renderPractice();\n}"""
+          new = """function nextStep() {\n  resetRecording();\n  if (currentStep < 5) {\n    currentStep++;\n  } else {\n    // A phrase is complete when the learner finishes Step 6.\n    // Count it exactly once here, regardless of whether AI grading was used or succeeded.\n    markPracticed(phrase().id);\n    renderHome();\n\n    if (currentPhrase < lesson().phrases.length - 1) {\n      currentPhrase++;\n      currentStep = 0;\n    } else {\n      clearPracticeState();\n      showView('homeView');\n      renderHome();\n      return;\n    }\n  }\n  renderPractice();\n}"""
+          if old not in s:
+              raise SystemExit('Expected nextStep block not found')
+          p.write_text(s.replace(old, new))
+
+          # 3) Use the device's local calendar date for today's count.
+          p = Path('storage.js')
+          s = p.read_text()
+          marker = """function save(key, value) {\n  localStorage.setItem(key, JSON.stringify(value));\n}\n"""
+          addition = """function save(key, value) {\n  localStorage.setItem(key, JSON.stringify(value));\n}\n\nfunction localDateKey() {\n  const now = new Date();\n  const year = now.getFullYear();\n  const month = String(now.getMonth() + 1).padStart(2, '0');\n  const day = String(now.getDate()).padStart(2, '0');\n  return `${year}-${month}-${day}`;\n}\n"""
+          if 'function localDateKey()' not in s:
+              if marker not in s:
+                  raise SystemExit('Expected storage save block not found')
+              s = s.replace(marker, addition)
+          s = s.replace("new Date().toISOString().slice(0, 10)", "localDateKey()")
+          p.write_text(s)
+
+          # 4) Force the PWA shell to refresh to this hotfix.
+          p = Path('sw.js')
+          s = p.read_text().replace("daily-shadowing-shell-v2", "daily-shadowing-shell-v3")
+          p.write_text(s)
+
+      - name: Commit hotfix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.js whisper.js storage.js sw.js
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Fix grading error and phrase progress counting"
+            git push
+          fi
