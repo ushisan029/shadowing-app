@@ -1,0 +1,14 @@
+{
+  "name": "Daily Shadowing - Beginner English",
+  "short_name": "Shadowing",
+  "description": "短い日常英語を段階的に練習する初学者向けシャドーイングPWA",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#111827",
+  "lang": "ja",
+  "icons": [
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
+  ]
+}

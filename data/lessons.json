@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "morning",
+      "title": "朝のひとこと",
+      "description": "起きてから家を出るまで",
+      "phrases": [
+        {"id":"morning-01","english":"Good morning.","japanese":"おはよう。","chunks":["Good morning."],"vocabulary":[{"word":"good morning","meaning":"おはよう","example":"Good morning."}]},
+        {"id":"morning-02","english":"I'm still sleepy.","japanese":"まだ眠いです。","chunks":["I'm still","sleepy."],"vocabulary":[{"word":"still","meaning":"まだ","example":"I'm still sleepy."},{"word":"sleepy","meaning":"眠い","example":"I'm still sleepy."}]},
+        {"id":"morning-03","english":"What time is it?","japanese":"今何時ですか？","chunks":["What time","is it?"],"vocabulary":[{"word":"what time","meaning":"何時","example":"What time is it?"}]},
+        {"id":"morning-04","english":"I need to get up.","japanese":"起きないと。","chunks":["I need to","get up."],"vocabulary":[{"word":"need to","meaning":"〜する必要がある","example":"I need to get up."},{"word":"get up","meaning":"起きる","example":"I need to get up."}]},
+        {"id":"morning-05","english":"I'm running late.","japanese":"遅れそうです。","chunks":["I'm running","late."],"vocabulary":[{"word":"run late","meaning":"時間に遅れる、遅れそうになる","example":"I'm running late."}]},
+        {"id":"morning-06","english":"Where's my phone?","japanese":"私のスマホはどこ？","chunks":["Where's","my phone?"],"vocabulary":[{"word":"where's","meaning":"where is の短縮形、どこにある？","example":"Where's my phone?"}]},
+        {"id":"morning-07","english":"I'm getting ready.","japanese":"準備しています。","chunks":["I'm getting","ready."],"vocabulary":[{"word":"get ready","meaning":"準備する","example":"I'm getting ready."}]},
+        {"id":"morning-08","english":"Let's have breakfast.","japanese":"朝ごはんを食べよう。","chunks":["Let's have","breakfast."],"vocabulary":[{"word":"breakfast","meaning":"朝食","example":"Let's have breakfast."}]},
+        {"id":"morning-09","english":"I'm leaving now.","japanese":"もう出ます。","chunks":["I'm leaving","now."],"vocabulary":[{"word":"leave","meaning":"出発する、去る","example":"I'm leaving now."}]},
+        {"id":"morning-10","english":"See you later.","japanese":"またあとで。","chunks":["See you","later."],"vocabulary":[{"word":"see you later","meaning":"またあとで","example":"See you later."}]}
+      ]
+    },
+    {
+      "id": "home",
+      "title": "家での会話",
+      "description": "毎日の家の中で使う一言",
+      "phrases": [
+        {"id":"home-01","english":"I'm home.","japanese":"ただいま。","chunks":["I'm home."],"vocabulary":[{"word":"I'm home","meaning":"ただいま","example":"I'm home."}]},
+        {"id":"home-02","english":"How was your day?","japanese":"今日はどうだった？","chunks":["How was","your day?"],"vocabulary":[{"word":"how was your day","meaning":"今日はどうだった？","example":"How was your day?"}]},
+        {"id":"home-03","english":"I'm a little tired.","japanese":"少し疲れています。","chunks":["I'm a little","tired."],"vocabulary":[{"word":"a little","meaning":"少し","example":"I'm a little tired."},{"word":"tired","meaning":"疲れた","example":"I'm a little tired."}]},
+        {"id":"home-04","english":"What's for dinner?","japanese":"夕飯は何？","chunks":["What's for","dinner?"],"vocabulary":[{"word":"what's for dinner","meaning":"夕飯は何？","example":"What's for dinner?"}]},
+        {"id":"home-05","english":"It smells good.","japanese":"いい匂い。","chunks":["It smells","good."],"vocabulary":[{"word":"smell","meaning":"匂いがする","example":"It smells good."}]},
+        {"id":"home-06","english":"Can I help?","japanese":"手伝おうか？","chunks":["Can I","help?"],"vocabulary":[{"word":"can I help","meaning":"手伝おうか？","example":"Can I help?"}]},
+        {"id":"home-07","english":"I'm really hungry.","japanese":"すごくお腹がすいた。","chunks":["I'm really","hungry."],"vocabulary":[{"word":"really","meaning":"本当に、とても","example":"I'm really hungry."},{"word":"hungry","meaning":"お腹がすいた","example":"I'm really hungry."}]},
+        {"id":"home-08","english":"Do you want some?","japanese":"少しいる？","chunks":["Do you want","some?"],"vocabulary":[{"word":"want some","meaning":"少し欲しい","example":"Do you want some?"}]},
+        {"id":"home-09","english":"I'm almost done.","japanese":"もうすぐ終わります。","chunks":["I'm almost","done."],"vocabulary":[{"word":"almost","meaning":"もう少しで、ほとんど","example":"I'm almost done."}]},
+        {"id":"home-10","english":"I'm going to bed.","japanese":"もう寝ます。","chunks":["I'm going","to bed."],"vocabulary":[{"word":"go to bed","meaning":"寝る、床につく","example":"I'm going to bed."}]}
+      ]
+    },
+    {
+      "id": "small-talk",
+      "title": "かんたん雑談",
+      "description": "友人や同僚との短いやり取り",
+      "phrases": [
+        {"id":"talk-01","english":"How are you?","japanese":"元気ですか？","chunks":["How are","you?"],"vocabulary":[{"word":"how are you","meaning":"元気ですか？","example":"How are you?"}]},
+        {"id":"talk-02","english":"I'm doing well.","japanese":"元気です。","chunks":["I'm doing","well."],"vocabulary":[{"word":"doing well","meaning":"元気にしている、うまくいっている","example":"I'm doing well."}]},
+        {"id":"talk-03","english":"What are you doing?","japanese":"何してるの？","chunks":["What are you","doing?"],"vocabulary":[{"word":"what are you doing","meaning":"何をしているの？","example":"What are you doing?"}]},
+        {"id":"talk-04","english":"I'm just relaxing.","japanese":"のんびりしているだけ。","chunks":["I'm just","relaxing."],"vocabulary":[{"word":"just","meaning":"ただ、単に","example":"I'm just relaxing."},{"word":"relax","meaning":"くつろぐ","example":"I'm just relaxing."}]},
+        {"id":"talk-05","english":"Are you busy?","japanese":"忙しい？","chunks":["Are you","busy?"],"vocabulary":[{"word":"busy","meaning":"忙しい","example":"Are you busy?"}]},
+        {"id":"talk-06","english":"Not right now.","japanese":"今は大丈夫。","chunks":["Not","right now."],"vocabulary":[{"word":"right now","meaning":"今すぐ、今この時","example":"Not right now."}]},
+        {"id":"talk-07","english":"That sounds good.","japanese":"それいいね。","chunks":["That sounds","good."],"vocabulary":[{"word":"sounds good","meaning":"よさそう、いいね","example":"That sounds good."}]},
+        {"id":"talk-08","english":"I don't know yet.","japanese":"まだ分かりません。","chunks":["I don't know","yet."],"vocabulary":[{"word":"yet","meaning":"まだ（否定文で）","example":"I don't know yet."}]},
+        {"id":"talk-09","english":"Give me a minute.","japanese":"ちょっと待って。","chunks":["Give me","a minute."],"vocabulary":[{"word":"give me a minute","meaning":"ちょっと待って","example":"Give me a minute."}]},
+        {"id":"talk-10","english":"See you tomorrow.","japanese":"また明日。","chunks":["See you","tomorrow."],"vocabulary":[{"word":"tomorrow","meaning":"明日","example":"See you tomorrow."}]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="description" content="初学者向けの短い日常英語シャドーイング練習PWA" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Daily Shadowing</title>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">BEGINNER ENGLISH</p>
+      <h1>Daily Shadowing</h1>
+    </div>
+    <button id="installBtn" class="ghost hidden" type="button">アプリを追加</button>
+  </header>
+
+  <main id="app" class="container" aria-live="polite">
+    <section id="homeView" class="view">
+      <div class="hero card">
+        <p class="muted">今日も短い英語を少しだけ。</p>
+        <div class="stat-grid">
+          <div><strong id="todayCount">0</strong><span>今日の練習</span></div>
+          <div><strong id="savedWordCount">0</strong><span>保存単語</span></div>
+          <div><strong id="bestScore">--</strong><span>ベスト</span></div>
+        </div>
+        <button id="startBtn" class="primary wide" type="button">今日の練習を始める</button>
+      </div>
+
+      <section>
+        <div class="section-title"><h2>レッスン</h2><span id="lessonProgress" class="muted"></span></div>
+        <div id="lessonList" class="lesson-list"></div>
+      </section>
+
+      <section>
+        <div class="section-title"><h2>マイ単語帳</h2><button id="openVocabBtn" class="text-btn" type="button">すべて見る</button></div>
+        <div id="vocabPreview" class="card compact"></div>
+      </section>
+    </section>
+
+    <section id="practiceView" class="view hidden">
+      <div class="toolbar">
+        <button id="backBtn" class="ghost" type="button">← 戻る</button>
+        <div class="step-dots" id="stepDots"></div>
+      </div>
+
+      <div class="card practice-card">
+        <div class="practice-meta">
+          <span id="lessonBadge" class="badge"></span>
+          <span id="phraseCounter" class="muted"></span>
+        </div>
+        <h2 id="stepTitle">まず聞く</h2>
+        <p id="stepHelp" class="muted"></p>
+
+        <div class="sentence-box">
+          <p id="englishText" class="english"></p>
+          <p id="japaneseText" class="japanese"></p>
+          <div id="chunks" class="chunks"></div>
+        </div>
+
+        <div class="control-row">
+          <button id="speakBtn" class="secondary" type="button">🔊 お手本</button>
+          <select id="speedSelect" aria-label="再生速度">
+            <option value="0.75">0.75×</option>
+            <option value="0.9">0.90×</option>
+            <option value="1" selected>1.00×</option>
+            <option value="1.1">1.10×</option>
+          </select>
+        </div>
+
+        <div id="recordPanel" class="record-panel hidden">
+          <button id="recordBtn" class="record" type="button">🎤 録音する</button>
+          <p id="recordStatus" class="muted">録音後、端末内AIで採点します。</p>
+          <audio id="recordedAudio" controls class="hidden"></audio>
+          <div id="scorePanel" class="score-panel hidden"></div>
+        </div>
+
+        <div id="vocabPanel" class="vocab-panel"></div>
+
+        <div class="nav-row">
+          <button id="prevStepBtn" class="ghost" type="button">前へ</button>
+          <button id="nextStepBtn" class="primary" type="button">次へ</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="vocabView" class="view hidden">
+      <div class="toolbar">
+        <button id="vocabBackBtn" class="ghost" type="button">← 戻る</button>
+        <h2>マイ単語帳</h2>
+      </div>
+      <div class="filter-row">
+        <button class="chip active" data-filter="all">すべて</button>
+        <button class="chip" data-filter="unknown">知らなかった</button>
+        <button class="chip" data-filter="difficult">苦手</button>
+        <button class="chip" data-filter="learned">覚えた</button>
+      </div>
+      <div id="vocabList" class="vocab-list"></div>
+    </section>
+  </main>
+
+  <dialog id="wordDialog">
+    <form method="dialog" class="dialog-card">
+      <button class="dialog-close" value="cancel" aria-label="閉じる">×</button>
+      <p class="eyebrow">MY VOCABULARY</p>
+      <h3 id="dialogWord"></h3>
+      <p id="dialogMeaning" class="muted"></p>
+      <p id="dialogExample" class="example"></p>
+      <div class="stack">
+        <button id="saveUnknownBtn" value="cancel" class="secondary" type="button">🟡 知らなかった</button>
+        <button id="saveDifficultBtn" value="cancel" class="secondary" type="button">🔴 苦手</button>
+        <button id="saveLearnedBtn" value="cancel" class="secondary" type="button">🟢 覚えた</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
